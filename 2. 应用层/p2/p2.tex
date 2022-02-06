@@ -1,0 +1,136 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath}
+\usepackage{lmodern}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\usepackage{listings} 
+\usepackage{xcolor}
+\lstset{
+  language=Python,  %代码语言使用的是Python
+  frame=shadowbox, %把代码用带有阴影的框圈起来
+  rulesepcolor=\color{red!20!green!20!blue!20},%代码块边框为淡青色
+  keywordstyle=\color{blue!90}\bfseries, %代码关键字的颜色为蓝色，粗体
+  commentstyle=\color{red!10!green!70}\textit,    % 设置代码注释的颜色
+  showstringspaces=false,%不显示代码字符串中间的空格标记
+  numbers=left, % 显示行号
+  numberstyle=\tiny,    % 行号字体
+  stringstyle=\ttfamily, % 代码字符串的特殊格式
+  breaklines=true, %对过长的代码自动换行
+  extendedchars=false,  %解决代码跨页时，章节标题，页眉等汉字不显示的问题
+%   escapebegin=\begin{CJK*},escapeend=\end{CJK*},      % 代码中出现中文必须加上，否则报错
+  texcl=true}
+
+\title{计算机网络第二章答案}
+\author{Half}
+\date{\today}
+\begin{document}
+\maketitle
+\section{2.1节}
+R1:Web: HTTP, email: SMTP, FileTransfer:FTP, remote login: telnet, NetworkNews: NNTP
+
+R2:网络体系结构是分层的体系结构, 但是从应用程序开发者的角度来看吗,网络体系的结构是固定的
+为应用程序提供了特定的服务集合
+\par
+应用程序体系结构规定了如何在各种端系统上组织应用结构,有两种主流的体系结构: 客户-服务器体系结构和对等体系结构
+
+R3:在两进程的对话中, 首先发起对话的是我们的客户端,接收对话的是服务器
+
+R4:不同意,因为一旦有通信的进程,那么就会产生客户端和服务器
+
+R5:标识对方主机的IP地址和使用的端口号
+
+R6:使用UDP,因为UDP不用去建立连接,拥塞控制等
+
+R7:计算机控制精密的机械
+
+R8:可靠的数据传输: TCP,吞吐量: TCP/UDP ,定时性: TCP/UDP ,安全性: TCP+SSL
+
+R9:是应用层,首先要解决的是我们的身份认证的问题, UDP是不进行连接直接使用的
+
+\section{2.2-2.4节}
+R10: 握手协议的作用是确认用户的身份,建立起TCP连接,为客户和服务器为接受大量的分组做好准备
+
+R11: 因为上述的协议需要可靠的数据传输,不允许丢失数据
+
+R12: 利用cookie可以进行用户的身份识别,当我们的用户再次浏览的时候,可以根据该cookie进行身份的识别
+
+R13: 在web缓存器中会存储最近请求对象的副本,当我们的用户进行请求的时候,如果在我们的缓存器中已经保存
+了该请求数据的副本,那么将直接发送该副本,而不用向服务器进行请求
+
+R14: 使用条件Get的方法,先进行对象的请求,在请求后将我们的条件GET的事件调整到晚于最后一次
+修改的时间
+
+R15: 微信,qq,meta,使用的是不同的sms协议
+
+R16: Alice 主机(HTTP) -> Alice 的服务器(SMTP协议) ->Bob的服务器(POP3协议) -> Bob的主机
+
+R17:
+\begin{lstlisting}
+    HTTP/1.1 200 OK
+    Date: Sat, 05 Feb 2022 07:30:42 GMT
+    Server: Apache
+    Last-Modified: Wed, 22 Jun 2011 06:40:00 GMT
+    ETag: "2c1-4a6473cd01000"
+    Accept-Ranges: bytes
+    Content-Length: 705
+    Cache-Control: max-age=315360000
+    Expires: Tue, 03 Feb 2032 07:30:42 GMT
+    Connection: Keep-Alive
+    Content-Type: image/gif
+\end{lstlisting}
+1. HTTP/1.1 200 OK\\
+表示我们的HTTP版本是1.1,200Ok表示请求成功\\
+2.Date: Sat, 05 Feb 2022 07:30:42 GMT\\
+表示我们的服务器发送响应报文的时间,这个时间使用的是我们的格林威治时间\\
+3.Server: Apache\\
+表示使用的是Apache服务器\\
+4.Last-Modified: Wed, 22 Jun 2011 06:40:00 GMT\\
+最急一次被修改的时间
+5.ETag: "2c1-4a6473cd01000"\\
+对象的版本标记\\
+6.Accept-Ranges: bytes.\\
+表示支持字节的断点续传\\
+断点续传指的是在我们的传输中断之后还能从我们中断的地方进行数据的传输\\
+7.Content-Length: 705\\
+对象的字节数\\
+8.Cache-Control:max-age=315360000\\
+访问该对象后后在多少秒的时候不会去对我们的服务器进行请求,而是使用在我们的Web缓存器中的缓存
+9.Expires: Tue, 03 Feb 2032 07:30:42 GMT\\
+表示的是该对象过期的时间\\
+10.Connection: Keep-Alive\\
+客户端到服务器端的连接持续有效\\
+11. Content-Type: image/gif\\
+我们的对象类型是gif图片\\
+
+R18: 区别是在后者中如果我们本地删除了记录还能在我们的服务器中找回
+
+R19: 可以使用相同的别名,但是在我们的服务器中要保存一个MX记录,保存的是完整的服务器
+
+R20: 
+能直接从我们的邮箱中查看我们的原文,可以得到我们的IP地址,再利用我们的IP地址进行查询即可
+其实你也能用whois进行查询,但是我们的whois数据库很多时候只能大体定位
+
+R21:
+不是必须进行回报的
+
+R22:
+每过30s,与其对等方进行一次交换,如果选择到了Alice, 那么Alice就会得到文件块
+
+R23:
+覆盖网络是一种面向应用层的网络,包括对等方和对等方之间由虚拟联络构成了抽象
+的逻辑网, 覆盖网络不包括路由器,在覆盖网络中的边就是对等方和对等方之间的逻辑链路
+
+R24:
+网状覆盖网络拓扑：优点是结构简单，实现方便。减少查询的时间和报文数量。缺点是对于大规模系统而言开销太大，不现实。
+环形DHT：优点减少了每个对等方必须管理的覆盖信息的数量。缺点是发送报文数量太多，耗费时间长。
+
+R25:
+安全性, 稳定性
+
+R26:
+因为一个TCP端口一次只能可一个客户端建立联系,所以需要去空出一个端口去建立新的
+客户端到服务器端的连接持续有效
+
+R27:
+因为TCP在发送前需要去建立连接但是UDP不需要
+\end{document}
