@@ -9,8 +9,6 @@ serverSocket = socket(AF_INET, SOCK_STREAM)
 # Fill in start
 serverSocket.bind(("", 83))
 serverSocket.listen(1)
-# Fill in end
-
 while True:
     # Establish the connection
     print("Ready to serve...")
