@@ -16,7 +16,6 @@ while True:
     try:
         message = connectionSocket.recv(2048)
         filename = message.split()[1]
-        print (filename[0:]) 
         f = open(filename[0:]) 
         outputdata = f.read()
         #Fill in start #Fill in end
@@ -39,3 +38,4 @@ while True:
         break
     #Fill in end 
 serverSocket.close()
+# eternal
